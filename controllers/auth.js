@@ -7,8 +7,25 @@ router.get("/sign-up", (req, res, next) => {
   });
 
   router.post("/sign-up", async (req, res, next) => {
-    res.send("Form submission accepted!");
-  });
+    
+    const username = req.body.username;
+    const password = req.body.password;
+
+    try {
+      const existingUser = await User.findOne({
+         username,
+
+      });
+
+      if (existingUser) {
+        return res.send("Ooops Something went wrong");
+    }
+
+    if (password !== confirmPassword) {
+      return res.send("Password and Confirm Password do not match");
+    }
+  } catch (error){}  
+    });
   
 
 module.exports = router;
