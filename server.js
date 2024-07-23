@@ -1,3 +1,4 @@
+
 const dotenv = require("dotenv");
 
 dotenv.config();
@@ -23,6 +24,13 @@ app.use(morgan('dev'));
 
 // ROUTES
 
+// server.js
+
+// GET /
+app.get("/", async (req, res) => {
+    res.render("index.ejs");
+  });
+  
 app.listen(port, () => {
   console.log(`The express app is ready on port ${port}!`);
 });
