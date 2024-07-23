@@ -56,6 +56,13 @@ router.post('/sign-in', async (req,res, next) => {
   const username = req.body.username;
   const password = req.body.password;
 
+  // Logout
+
+  router.get("/sign-out", (req, res) => {
+    req.session.destroy();
+    res.redirect("/");
+  });
+
   const existingUser = await User.findOne({
     username,
   });
